@@ -87,6 +87,9 @@
     $('#q4').after('DOMの後');
   });
 // 第5問  id='q5'の要素をクリックしたらこの要素にlargeというクラスを付与せよ。
+  $('#q5').on('click', function() {
+    $('#q5').addClass('large');
+  });
 // 第6問  id='q6'の要素をクリックしたらこの要素を2秒かけてmargin-topとmargin-leftを100pxの位置に移動させよ。
 // 第7問  id='q7'の子要素をクリックしたら、その要素のインデックス（何番目か）をconsole.log()とalert()を用いて表示させよ。
 // 第8問  id='q8'の要素をhoverしたらlargeというクラスを付与し、hoverが外れたら、クラスを削除せよ。
