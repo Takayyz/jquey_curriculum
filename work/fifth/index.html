@@ -98,9 +98,9 @@
 // .change() セレクトボックスの値の変更をキャッチする関数
 // $().each() DOM要素を1つずつループ処理をする（ループ内で$(this)を使うと要素がひとつずつ取得できる）
 
-$('.select').on('click', function() { // selectにイベント:クリックが発生した時
-  $(this).change(hoge); // selectの値の変更をキャッチするchangeメソッドにhogeという引数を指定
-  function hoge() { // changeメソッドで定義された引数の処理
+$('.select').on('click', function() { // class = selectにイベント:クリックが発生した時
+  $(this).change(style); // selectの値の変更をキャッチするchangeメソッドにstyleという引数を指定
+  function style() { // changeメソッドで定義された引数の処理
     var value = $(this).val(); // 選択された要素(option)のvalueを取得し変数valueに代入
     console.log(value);
     $('.list').children('li').each(function() { // listクラスの子要素liに対してループ処理
