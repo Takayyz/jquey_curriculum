@@ -34,6 +34,34 @@
 // .data() 要素のdata属性を取得します。
 // .width() 要素の幅を取得します。
 // .length 要素の個数を取得します。
+  var slideWidth = $('.slider-list').children('li').width();
+  var slideNum = $('.slider-list').children('li').length;
+  var sliderListWidth = slideWidth * slideNum;
+  $('.slider-list').css('width', sliderListWidth);
+  var slideCurrent = 0;
+  var sliding = function() {
+    if ( slideCurrent < 0 ) {
+      slideCurrent = slideNum - 1; // leftのポジションを指定する際にスライドの終わりからにならないようにする為
+    } else if ( slideCurrent > slideNum - 1) {
+      slideCurrent = 0;
+    }
+    $('.slider-list').animate({
+      left: slideCurrent * -slideWidth
+    });
+  }
+  $('.slider-ctrl-btn').on('click', function() {
+    var data = $(this).data('ctrl');
+    if ( data === 'next') {
+      slideCurrent++;
+    } else if ( data === 'prev') {
+      slideCurrent--;
+    }
+    sliding();
+  });
+  // $('.is-prev').on('click', function() {
+  //   slideCurrent--;
+  //   sliding();
+  // });
 </script>
 </body>
 </html>
