@@ -39,16 +39,6 @@
   var sliderListWidth = slideWidth * slideNum;
   $('.slider-list').css('width', sliderListWidth);
   var slideCurrent = 0;
-  var sliding = function() {
-    if ( slideCurrent < 0 ) {
-      slideCurrent = slideNum - 1; // leftのポジションを指定する際にスライドの終わりからにならないようにする為
-    } else if ( slideCurrent > slideNum - 1) {
-      slideCurrent = 0;
-    }
-    $('.slider-list').animate({
-      left: slideCurrent * -slideWidth
-    });
-  }
   $('.slider-ctrl-btn').on('click', function() {
     var data = $(this).data('ctrl');
     if ( data === 'next') {
@@ -56,12 +46,15 @@
     } else if ( data === 'prev') {
       slideCurrent--;
     }
-    sliding();
+    $('.slider-list').animate({
+      left: slideCurrent * -slideWidth
+    });
+    if ( slideCurrent < 0 ) {
+      slideCurrent = slideNum - 1; // leftのポジションを指定する際にスライドの終わりからにならないようにする為
+    } else if ( slideCurrent > slideNum - 1) {
+      slideCurrent = 0;
+    }
   });
-  // $('.is-prev').on('click', function() {
-  //   slideCurrent--;
-  //   sliding();
-  // });
 </script>
 </body>
 </html>
