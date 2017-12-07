@@ -48,7 +48,7 @@
       var data = $(this).data('scroll-place-type');
       if (selected === data) {
         var position = $(this).offset().top;
-        console.log(position);
+        // console.log(position);
         $('body, html').animate({scrollTop: position});
       }
     });
@@ -60,7 +60,7 @@
     } else {
       $('.scrollTopBtn').fadeOut();
     }
-    console.log(current);
+    // console.log(current);
   });
   $('.scrollTopBtn').on('click', function() {
     $('body, html').animate({scrollTop: 0});
