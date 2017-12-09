@@ -65,7 +65,7 @@
   // });
 //
   $('#js-search-button').on('click', function() {
-    $('.lists__item').detach();
+    $('.lists__item').remove();
     $.ajax({
       url: 'https://app.rakuten.co.jp/services/api/BooksTotal/Search/20130522',
       type: 'GET',
@@ -79,10 +79,13 @@
     })
     .done(function(data) {
       console.log(data);
-      $(data.Items).each(function() {
-        console.log(this.Item.title);
-        $('.lists').append('<li class="lists__item"><div class="lists__item__inner"><a href="" class="lists__item__link" target="_blank"><img src="' + this.Item.largeImageUrl + '" class="lists__item__img" alt=""><p class="lists__item__detail">作品名：' + this.Item.title + '</p><p class="lists__item__detail">作者 ：' + this.Item.author + '</p><p class="lists__item__detail">出版社：' + this.Item.publisherName + '</p></a></div></li>');
+      $.each(data.Items, function() {
+          $('.lists').append('<li class="lists__item"><div class="lists__item__inner"><a href="" class="lists__item__link" target="_blank"><img src="' + this.Item.largeImageUrl + '" class="lists__item__img" alt=""><p class="lists__item__detail">作品名：' + this.Item.title + '</p><p class="lists__item__detail">作者 ：' + this.Item.author + '</p><p class="lists__item__detail">出版社：' + this.Item.publisherName + '</p></a></div></li>');
       });
+      // $(data.Items).each(function() {
+      //   console.log(this.Item.title);
+      //   $('.lists').append('<li class="lists__item"><div class="lists__item__inner"><a href="" class="lists__item__link" target="_blank"><img src="' + this.Item.largeImageUrl + '" class="lists__item__img" alt=""><p class="lists__item__detail">作品名：' + this.Item.title + '</p><p class="lists__item__detail">作者 ：' + this.Item.author + '</p><p class="lists__item__detail">出版社：' + this.Item.publisherName + '</p></a></div></li>');
+      // });
     });
   });
 </script>
