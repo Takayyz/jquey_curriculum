@@ -49,7 +49,7 @@
     url: './data.json'
   })
   .done(function(data) {
-    $(data.colorsArray).each(function() {
+    $.each(data.colorsArray, function() {
       console.log(this.colorName);
       $('.colorList').append('<li class="colorList__item"><p class="colorList__title" style="background-color:' + this.hexValue + ';">' + this.colorName + '</p></li>');
     });
