@@ -64,7 +64,7 @@
   //   // この中にデータ取得後の動きを記述していきます。
   // });
 
-  function request() {
+  function request(searchWord) {
     return $.ajax({
       url: 'https://app.rakuten.co.jp/services/api/BooksTotal/Search/20130522',
       type: 'GET',
@@ -73,7 +73,7 @@
         // 「区分:サービス固有パラメーター」を確認して、必要な情報をdata内に入れましょう。
         applicationId: '1019399324990976605', // (今回はこのIDを使用してください)
         booksGenreId: '001',
-        keyword: $('#js-search-word').val(),
+        keyword: searchWord,
         hits: 20
       }
     });
@@ -108,18 +108,19 @@
 
   function error(data) {
       console.log(data);
-      $('.message').remove();
       var errorDetail =
         '<div class="message">' +
-         data.responseText +
+         data.responseJSON.error_description +
         '</div>';
       $('.search').after(errorDetail);
   }
 
   $('#js-search-button').on('click', function() {
     $('.lists__item').remove();
+    $('.message').remove();
+    var searchWord = $('#js-search-word').val();
 
-    request()
+    request(searchWord)
     .done(success)
     .fail(error);
   });
